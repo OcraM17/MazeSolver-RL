@@ -4,8 +4,9 @@ from tqdm import tqdm
 from QAgent import QAgent
 from ExpectedSarsa import ExpectedSarsaAgent
 from matplotlib import pyplot as plt
+from time import sleep
 def training():
-    agent_info = {"num_actions": 4, "num_states": 25, "epsilon": 0.1, "step_size": 0.5, "discount": 1.0,"seed":5}
+    agent_info = {"num_actions": 4, "num_states": 100, "epsilon": 0.1, "step_size": 0.5, "discount": 1.0,"seed":5}
     env = Maze()
     agents=[QAgent(agent_info),ExpectedSarsaAgent(agent_info)]
     rew_agents=[]
@@ -16,7 +17,7 @@ def training():
             env.render()
             action = agent.agent_start(state)
             ep_rew=0
-            for t in range(100):
+            for t in range(200):
                 state, reward, done, info = env.step(action)
                 ep_rew+=reward
                 if done:

@@ -22,7 +22,7 @@ class QAgent():
         """
 
         # Choose action using epsilon greedy.
-        state=5*state[0]+state[1]
+        state=10*state[0]+state[1]
         current_q = self.q[state, :]
         if self.rand_generator.rand() < self.epsilon:
             action = self.rand_generator.randint(self.num_actions)
@@ -42,7 +42,7 @@ class QAgent():
         Returns:
             action (int): the action the agent is taking.
         """
-        state=5*state[0]+state[1]
+        state=10*state[0]+state[1]
         # Choose action using epsilon greedy.
         current_q = self.q[state, :]
         if self.rand_generator.rand() < self.epsilon:
