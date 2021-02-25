@@ -2,7 +2,6 @@ import gym
 import numpy as np
 from gym import error, spaces, utils
 from gym.utils import seeding
-from matplotlib import pyplot as plt
 
 def build_Maze(obs):
     a=np.zeros((5,5))
@@ -17,7 +16,7 @@ class Maze(gym.Env):
         self.mean=['U','D','R','L']
         self.action_space=spaces.Discrete(len(self.actions))
         self.observation_space=spaces.Box(low=0,high=4,shape=(5,5))
-        self.obs=[(0,2),(1,4),(2,2),(2,1),(3,3),(4,2)]
+        self.obs=[(0,2),(1,4),(2,2),(3,1),(3,3),(4,2)]
         self.start=(0,0)
         self.goal=(4,4)
         self.maze=build_Maze(self.obs)
@@ -59,11 +58,6 @@ class Maze(gym.Env):
     def render(self):
         x,y=self.state
         a=np.array(self.maze)
-        a[x,y]=8.0
-        plt.clf()
-        plt.imshow(a)
-        plt.show()
-        """
         print('-----')
         for i in range(5):
             for j in range(5):
@@ -73,7 +67,6 @@ class Maze(gym.Env):
                     print(int(a[i,j]), end='')
             print()
         print('-----')
-        """
 
 
         
