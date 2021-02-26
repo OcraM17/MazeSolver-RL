@@ -4,6 +4,7 @@ from os import system
 from time import sleep
 from gym import error, spaces, utils
 from gym.utils import seeding
+from matplotlib import pyplot as plt
 
 def build_Maze(obs):
     a=np.zeros((10,10))
@@ -59,7 +60,8 @@ class Maze(gym.Env):
             
         return self.state, reward, done, {}
     
-    def render(self):
+    def render(self,episode,t):
+
         _=system('clear')
         x,y=self.state
         a=np.array(self.maze)
@@ -72,7 +74,15 @@ class Maze(gym.Env):
                     print(int(a[i,j]), end='')
             print()
         print('-----')
-        sleep(0.05)
+        a[self.start] = 4
+        a[x,y]=8
+        a[self.goal]=4
+        plt.clf()
+        plt.title('Episode: '+str(episode)+' Step: '+str(t))
+        plt.ion()
+        plt.draw()
+        plt.imshow(a)
+        plt.pause(0.001)
 
 
         

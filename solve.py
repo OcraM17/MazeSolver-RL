@@ -14,19 +14,19 @@ def training():
         rew_history = []
         for i_episode in range(500):
             state = env.reset()
-            env.render()
+            env.render(i_episode,0)
             action = agent.agent_start(state)
             ep_rew=0
             for t in range(200):
                 state, reward, done, info = env.step(action)
                 ep_rew+=reward
                 if done:
-                    env.render()
+                    env.render(i_episode,t+1)
                     print("Episode finished after {} timesteps".format(t + 1))
                     agent.agent_end(reward)
                     break
                 action=agent.agent_step(reward, state)
-                env.render()
+                env.render(i_episode,t+1)
             rew_history.append(ep_rew)
         rew_agents.append(rew_history)
 
